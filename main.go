@@ -6,7 +6,7 @@ import (
 
 	"github.com/codegangsta/cli"
 	"github.com/codegangsta/envy/lib"
-	"github.com/codegangsta/gin/lib"
+	"github.com/ralph327/genever/lib"
 
 	"log"
 	"os"
@@ -19,14 +19,14 @@ import (
 
 var (
 	startTime  = time.Now()
-	logger     = log.New(os.Stdout, "[gin] ", 0)
+	logger     = log.New(os.Stdout, "[genever] ", 0)
 	immediate  = false
 	buildError error
 )
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "gin"
+	app.Name = "genever"
 	app.Usage = "A live reload utility for Go web applications."
 	app.Action = MainAction
 	app.Flags = []cli.Flag{
