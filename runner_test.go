@@ -1,8 +1,8 @@
-package gin_test
+package genever_test
 
 import (
 	"bytes"
-	"github.com/ralph327/genever/lib"
+	"github.com/ralph327/genever"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -17,7 +17,7 @@ func Test_NewRunner(t *testing.T) {
 	}
 	bin := filepath.Join("test_fixtures", filename)
 
-	runner := gin.NewRunner(bin)
+	runner := genever.NewRunner(bin)
 
 	fi, _ := runner.Info()
 	expect(t, fi.Name(), filename)
@@ -28,7 +28,7 @@ func Test_Runner_Run(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		bin += ".bat"
 	}
-	runner := gin.NewRunner(bin)
+	runner := genever.NewRunner(bin)
 
 	cmd, err := runner.Run()
 	expect(t, err, nil)
@@ -44,7 +44,7 @@ func Test_Runner_Kill(t *testing.T) {
 		bin += ".bat"
 	}
 
-	runner := gin.NewRunner(bin)
+	runner := genever.NewRunner(bin)
 
 	cmd1, err := runner.Run()
 	expect(t, err, nil)
@@ -77,7 +77,7 @@ func Test_Runner_SetWriter(t *testing.T) {
 		bin += ".bat"
 	}
 
-	runner := gin.NewRunner(bin)
+	runner := genever.NewRunner(bin)
 	runner.SetWriter(buff)
 
 	cmd, err := runner.Run()

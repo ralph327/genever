@@ -6,7 +6,7 @@ import (
 
 	"github.com/codegangsta/cli"
 	"github.com/codegangsta/envy/lib"
-	"github.com/ralph327/genever/lib"
+	"github.com/ralph327/genever"
 
 	"log"
 	"os"
@@ -63,7 +63,7 @@ func main() {
 		{
 			Name:      "run",
 			ShortName: "r",
-			Usage:     "Run the gin proxy in the current working directory",
+			Usage:     "Run the genever proxy in the current working directory",
 			Action:    MainAction,
 		},
 		{
@@ -93,12 +93,12 @@ func MainAction(c *cli.Context) {
 		logger.Fatal(err)
 	}
 
-	builder := gin.NewBuilder(c.GlobalString("path"), c.GlobalString("bin"), c.GlobalBool("godep"))
-	runner := gin.NewRunner(filepath.Join(wd, builder.Binary()), c.Args()...)
+	builder := genever.NewBuilder(c.GlobalString("path"), c.GlobalString("bin"), c.GlobalBool("godep"))
+	runner := genever.NewRunner(filepath.Join(wd, builder.Binary()), c.Args()...)
 	runner.SetWriter(os.Stdout)
-	proxy := gin.NewProxy(builder, runner)
+	proxy := genever.NewProxy(builder, runner)
 
-	config := &gin.Config{
+	config := &genever.Config{
 		Port:    port,
 		ProxyTo: "http://localhost:" + appPort,
 	}
@@ -135,7 +135,7 @@ func EnvAction(c *cli.Context) {
 
 }
 
-func build(builder gin.Builder, runner gin.Runner, logger *log.Logger) {
+func build(builder genever.Builder, runner genever.Runner, logger *log.Logger) {
 	err := builder.Build()
 	if err != nil {
 		buildError = err
@@ -181,7 +181,7 @@ func scanChanges(watchPath string, cb scanCallback) {
 	}
 }
 
-func shutdown(runner gin.Runner) {
+func shutdown(runner genever.Runner) {
 	c := make(chan os.Signal, 2)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 	go func() {
