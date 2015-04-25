@@ -1,5 +1,5 @@
-package main
-
+package genever
+/*
 import (
 	"errors"
 	"fmt"
@@ -23,59 +23,6 @@ var (
 	immediate  = false
 	buildError error
 )
-
-func main() {
-	app := cli.NewApp()
-	app.Name = "genever"
-	app.Usage = "A live reload utility for Go web applications."
-	app.Action = MainAction
-	app.Flags = []cli.Flag{
-		cli.IntFlag{
-			Name:  "port,p",
-			Value: 3000,
-			Usage: "port for the proxy server",
-		},
-		cli.IntFlag{
-			Name:  "appPort,a",
-			Value: 3001,
-			Usage: "port for the Go web server",
-		},
-		cli.StringFlag{
-			Name:  "bin,b",
-			Value: "genever",
-			Usage: "name of generated binary file",
-		},
-		cli.StringFlag{
-			Name:  "path,t",
-			Value: ".",
-			Usage: "Path to watch files from",
-		},
-		cli.BoolFlag{
-			Name:  "immediate,i",
-			Usage: "run the server immediately after it's built",
-		},
-		cli.BoolFlag{
-			Name:  "godep,g",
-			Usage: "use godep when building",
-		},
-	}
-	app.Commands = []cli.Command{
-		{
-			Name:      "run",
-			ShortName: "r",
-			Usage:     "Run the genever proxy in the current working directory",
-			Action:    MainAction,
-		},
-		{
-			Name:      "env",
-			ShortName: "e",
-			Usage:     "Display environment variables set by the .env file",
-			Action:    EnvAction,
-		},
-	}
-
-	app.Run(os.Args)
-}
 
 func MainAction(c *cli.Context) {
 	port := c.GlobalInt("port")
@@ -194,3 +141,4 @@ func shutdown(runner genever.Runner) {
 		os.Exit(1)
 	}()
 }
+*/
