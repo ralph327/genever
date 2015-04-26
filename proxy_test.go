@@ -40,7 +40,7 @@ func Test_Proxying(t *testing.T) {
 	defer ts.Close()
 
 	config := &genever.Config{
-		Port:    5678,
+		Port:    "5678",
 		ProxyTo: ts.URL,
 	}
 
@@ -69,7 +69,7 @@ func Test_Proxying_Websocket(t *testing.T) {
 	defer ts.Close()
 
 	config := &genever.Config{
-		Port:    5678,
+		Port:    "5678",
 		ProxyTo: ts.URL,
 	}
 
@@ -97,7 +97,7 @@ func Test_Proxying_Build_Errors(t *testing.T) {
 	proxy := genever.NewProxy(builder, runner)
 
 	config := &genever.Config{
-		Port:    5679,
+		Port:    "5679",
 		ProxyTo: "http://localhost:3000",
 	}
 

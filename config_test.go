@@ -9,7 +9,7 @@ func Test_LoadConfig(t *testing.T) {
 	config, err := genever.LoadConfig("test_fixtures/config.json")
 
 	expect(t, err, nil)
-	expect(t, config.Port, 5678)
+	expect(t, config.Port, "5678")
 	expect(t, config.ProxyTo, "http://localhost:3000")
 }
 
